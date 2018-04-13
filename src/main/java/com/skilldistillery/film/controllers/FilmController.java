@@ -26,6 +26,14 @@ public class FilmController {
 		mv.addObject("film", filmDAO.getFilmById(filmId));
 		return mv;
 	}
+	
+	@RequestMapping(params="title, description, rating", path= "addedFilm.do", method= {RequestMethod.GET})
+	public ModelAndView addFilm(@RequestParam("title, description, rating") String title, String description, String rating) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/result.jsp");
+		mv.addObject("film", filmDAO.addFilm(title, description, rating));
+		return mv;
+	}
 //	public class StateController {
 //		@Autowired
 //		StateDAO stateDAO;
