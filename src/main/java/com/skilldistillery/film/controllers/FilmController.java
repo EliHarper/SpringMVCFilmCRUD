@@ -19,7 +19,7 @@ public class FilmController {
 		this.filmDAO = filmDAO;
 	}
 	
-	@RequestMapping(params="filmId", path= "results.do", method= {RequestMethod.GET})
+	@RequestMapping(params="filmId", path= "home.do", method= {RequestMethod.GET})
 	public ModelAndView getFilmById(@RequestParam("filmId") int filmId) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/results.jsp");
@@ -27,7 +27,7 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(params= {"title", "description", "rating"}, path= "addedFilm.do", method= {RequestMethod.GET})
+	@RequestMapping(params= {"title", "description", "rating"}, path= "home.do", method= {RequestMethod.GET})
 	public ModelAndView addFilm(@RequestParam("title, description, rating") String title, String description, String rating) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/results.jsp");
@@ -35,7 +35,7 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(params="filmKeyword", path="results.do", method= {RequestMethod.GET})
+	@RequestMapping(params="filmKeyword", path="home.do", method= {RequestMethod.GET})
 	public ModelAndView searchFilmByKeyword(@RequestParam("filmKeyword") String filmKeyword) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/results.jsp");
