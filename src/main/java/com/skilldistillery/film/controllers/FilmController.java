@@ -19,23 +19,19 @@ public class FilmController {
 		this.filmDAO = filmDAO;
 	}
 	
-<<<<<<< HEAD
-	@RequestMapping(params="filmID", path= "filmId.do", method= {RequestMethod.GET})
+	@RequestMapping(path= "filmId.do", method= RequestMethod.GET)
 	public ModelAndView getFilmById(@RequestParam("filmID") Integer filmId) {
-=======
-	@RequestMapping(params="filmId", path= "home.do", method= {RequestMethod.GET})
-	public ModelAndView getFilmById(@RequestParam("filmId") int filmId) {
->>>>>>> 0d2fad90d46e5c8e26bf0a525263960481fb164b
+
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("WEB-INF/results.jsp");
+		mv.setViewName("WEB-INF/views/results.jsp");
 		mv.addObject("film", filmDAO.getFilmById(filmId));
 		return mv;
 	}
 	
-	@RequestMapping(params= {"title", "description", "rating"}, path= "home.do", method= {RequestMethod.GET})
+	@RequestMapping(path= "home.do", method= RequestMethod.GET)
 	public ModelAndView addFilm(@RequestParam("title, description, rating") String title, String description, String rating) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("WEB-INF/results.jsp");
+		mv.setViewName("WEB-INF/views/results.jsp");
 		mv.addObject("film", filmDAO.addFilm(title, description, rating));
 		return mv;
 	}
