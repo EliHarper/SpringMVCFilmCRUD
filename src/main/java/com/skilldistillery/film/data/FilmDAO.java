@@ -16,6 +16,7 @@ import com.skilldistillery.film.entities.Film;
 	  public String getLanguageByFilmId(int filmId);
 	  public Film addFilm(Film film);
 	  public void deleteFilm(int filmId);
+	  public Film updateFilm(Film film);
 	}
 
 
