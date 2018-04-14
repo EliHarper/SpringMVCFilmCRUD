@@ -12,6 +12,7 @@
 	<c:choose>
 		<c:when test="${! empty film}">
 			<h1>Title: ${film.title}</h1>
+			<h4>ID: ${film.id}</h4>
 			<h2>Film Information:</h2>
 			<h5>
 				Release Year: ${film.releaseYear}<br>Rating: ${film.rating}<br>Length:
