@@ -10,8 +10,8 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${! empty film}">
-			<c:forEach var="film" items="${films}">
+		<c:when test="${ empty film}">
+			<c:forEach var="film" items="${film}">
 				<h1>Title: ${film.title}</h1>
 				<h4>ID: ${film.id}</h4>
 				<h2>Film Information:</h2>
@@ -38,6 +38,8 @@
 					<input type="submit" value="Delete Film">
 				</form>
 			</c:forEach>
+			
+			
 
 
 
