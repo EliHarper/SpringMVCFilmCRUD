@@ -6,10 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Film Results</title>
+<title>Film Database</title>
 </head>
 <body>
-	<h2>Search for a Film</h2>
+	<h2>Search for a Film:</h2>
 	<form action="filmKeyword.do" method="GET">
 		<input type="text" name="filmKeyword" value="${filmKeyword}">
 		<input type="submit" value="Look up film by Keyword">
@@ -52,14 +52,13 @@
 				</c:forEach>
 			</c:when>
 		</c:choose>
-	</form>
+	</form><br><br><br>
+	<h2>Add a Film:</h2>
 	
 	<form action="addFilm.do" method="GET">
 		Title: <input type="text" name="title"> <br> 
 		Description: <input type="text" name="description"> <br>
 		Release Year: <input type="text" name="releaseYear"> <br>
-		Release Year: <input type="text" name="releaseYear"> <br>
-		Language: <input type="text" name="language"> <br>
 		Rental Duration: <input type="text" name="rentalDuration"> <br>
 		Rental Rate: <input type="text" name="rentalRate"> <br>
 		Length: <input type="text" name="length"> <br>
