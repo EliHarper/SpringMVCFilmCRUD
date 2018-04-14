@@ -33,7 +33,7 @@
 	</form>
 
 	<form action="filmId.do" method="GET">
-		<input type="text" name="filmKeyword" value="${filmId}"> <input
+		<input type="text" name="filmID" value="${filmId}"> <input
 			type="submit" value="Look up film by ID">
 
 		<c:choose>
