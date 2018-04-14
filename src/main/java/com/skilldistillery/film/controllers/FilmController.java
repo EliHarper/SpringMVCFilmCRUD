@@ -29,7 +29,6 @@ public class FilmController {
 	}
 	
 	@RequestMapping(path= "addFilm.do", method= RequestMethod.GET)
-
     public ModelAndView addFilm(Film film) {
         ModelAndView mv = new ModelAndView();
         film.setLanguageId(filmDAO.convertLangToLangId(film.getLanguage()));
