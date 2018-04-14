@@ -31,6 +31,7 @@ public class FilmController {
 	@RequestMapping(path= "addFilm.do", method= RequestMethod.GET)
 	public ModelAndView addFilm(Film film) {
 		ModelAndView mv = new ModelAndView();
+		filmDAO.addFilm(film);
 		mv.setViewName("WEB-INF/views/results.jsp");
 		mv.addObject("film", filmDAO.addFilm(film));
 		return mv;
