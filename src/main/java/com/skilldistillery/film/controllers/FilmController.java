@@ -42,4 +42,10 @@ public class FilmController {
 		mv.addObject("film", filmDAO.getFilmByKeyword(filmKeyword));
 		return mv;
 	}
+	 @RequestMapping(path = "home.do")
+	    public ModelAndView home() {
+	        ModelAndView mv = new ModelAndView();
+	        mv.setViewName("WEB-INF/views/home.jsp");
+	        return mv;
+	    }
 }
