@@ -19,7 +19,7 @@
 				<c:forEach var="films" items="${film}">
 					<h1>Title: ${film.title}</h1>
 					<h3>Film Information: ${film.releaseYear} | ${film.rating}
-						|${film.length} | ${film.language}</h3>
+						| ${film.length} | ${film.language}</h3>
 					<h4>Rental Information:</h4>
 					<h3>Rental Duration: ${film.rentalDuration}</h3>
 					<h3>Rental Rate: ${film.rentalRate}</h3>
@@ -53,6 +53,7 @@
 			</c:when>
 		</c:choose>
 	</form>
+	
 	<form action="addFilm.do" method="GET">
 		Title: <input type="text" name="title"> <br> Description:
 		<input type="text" name="description"> <br> 
