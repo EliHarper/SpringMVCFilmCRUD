@@ -9,7 +9,7 @@ import com.skilldistillery.film.entities.Language;
 
 	public interface FilmDAO {
 	  public Film getFilmById(int filmId);
-	  public List<Film> getFullFilmById(int filmId);
+	  public Film getFullFilmById(int filmId);
 	  public Actor getActorById(int actorId);
 	  public List<Actor> getActorsByFilmId(int filmId);
 	  public List<Film> getFilmByKeyword(String keyword);
