@@ -59,13 +59,13 @@
 		Title: <input type="text" name="title"> <br> 
 		Description: <input type="text" name="description"> <br>
 		Release Year: <input type="text" name="releaseYear"> <br>
-		Language: <select id="language" name="languageId">
-			<option value="1">English</option>
-			<option value="2">Italian</option>
-			<option value="3">Japanese</option>
-			<option value="4">Mandarin</option>
-			<option value="5">French</option>
-			<option value="6">German</option>
+		Language: <select id="language" name="language">
+			<option value="English">English</option>
+			<option value="Italian">Italian</option>
+			<option value="Japanese">Japanese</option>
+			<option value="Mandarin">Mandarin</option>
+			<option value="French">French</option>
+			<option value="German">German</option>
 		</select><br>
 		Rental Duration: <input type="text" name="rentalDuration"> <br>
 		Rental Rate: <input type="text" name="rentalRate"> <br>
