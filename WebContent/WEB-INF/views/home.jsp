@@ -59,6 +59,14 @@
 		Title: <input type="text" name="title"> <br> 
 		Description: <input type="text" name="description"> <br>
 		Release Year: <input type="text" name="releaseYear"> <br>
+		Language: <select id="language" name="languageId">
+			<option value="1">English</option>
+			<option value="2">Italian</option>
+			<option value="3">Japanese</option>
+			<option value="4">Mandarin</option>
+			<option value="5">French</option>
+			<option value="6">German</option>
+		</select><br>
 		Rental Duration: <input type="text" name="rentalDuration"> <br>
 		Rental Rate: <input type="text" name="rentalRate"> <br>
 		Length: <input type="text" name="length"> <br>
@@ -70,7 +78,13 @@
 			<option value="R">R</option>
 			<option value="NC-17">NC-17</option>
 		</select><br>
-		Special Features: <input type="text" name="specialFeatures"> <br>
+		Special Features: <select id="specialFeatures" name="specialFeatures">
+			<option value="">G</option>
+			<option value="PG">PG</option>
+			<option value="PG-13">PG-13</option>
+			<option value="R">R</option>
+			<option value="NC-17">NC-17</option>
+		</select><br>
 		<input type="submit" value="Add New Film">
 	</form>
 </body>
