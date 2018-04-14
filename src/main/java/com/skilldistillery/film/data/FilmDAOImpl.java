@@ -11,7 +11,6 @@ import java.util.List;
 
 import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
-import com.skilldistillery.film.entities.Language;
 
 public class FilmDAOImpl implements FilmDAO {
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid";
@@ -35,7 +34,7 @@ public class FilmDAOImpl implements FilmDAO {
 				int lanaguageId = rs.getInt(6);
 
 				List<Actor> cast = getActorsByFilmId(id);
-				Language language = getLanguageByFilmId(lanaguageId);
+				String language = getLanguageByFilmId(lanaguageId);
 				film = new Film(title, releaseYear, rating, cast, language, description);
 
 			}
@@ -125,53 +124,52 @@ public class FilmDAOImpl implements FilmDAO {
 	}
 
 	@Override
-	public List<Film> getFilmByKeyword(String keyword) {
-		List<Film> filmsList = new ArrayList<>();
-		String sql = "SELECT f.title, f.release_year, f.rating, f.description, f.id, f.language_id FROM film f WHERE f.title like ? OR f.description like ?";
+	public Film getFilmByKeyword(String keyword) {
 		Film film = null;
+		String sql = "SELECT f.title, f.description, f.release_year, f.language_id, f.rental_duration, f.rental_rate, f.length, f.replacement_cost, f.rating, f.special_features, f.id, l.name, c.name from film f join language l on l.id = f.language_id join film_category fc on f.id = fc.film_id join category c on fc.category_id = c.id where title like ? or description like ?;";
+		
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, "%" + keyword + "%");
-			stmt.setString(2, "%" + keyword + "%");
+			 stmt.setString(1, "%" + keyword + "%"); 
+			 stmt.setString(2, "%" + keyword + "%");
 			ResultSet rs = stmt.executeQuery();
-
 			while (rs.next()) {
 				String title = rs.getString(1);
-				int releaseYear = rs.getInt(2);
-				String rating = rs.getString(3);
-				String description = rs.getString(4);
-				int id = rs.getInt(5);
-				int lanaguageId = rs.getInt(6);
-
+				String description = rs.getString(2);
+				int releaseYear = rs.getInt(3);
+				int languageId = rs.getInt(4);
+				int rentalDuration = rs.getInt(5);
+				double rentalRate = rs.getDouble(6);
+				int length = rs.getInt(7);
+				double replacementCost = rs.getDouble(8);
+				String rating = rs.getString(9);
+				String specialFeatures = rs.getString(10);
+				int id = rs.getInt(11);
+				String language = rs.getString(12);
+				String genre = rs.getString(13);
 				List<Actor> cast = getActorsByFilmId(id);
-				Language language = getLanguageByFilmId(lanaguageId);
-				film = new Film(title, releaseYear, rating, cast, language, description);
-				filmsList.add(film);
+				
+				film = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
+						replacementCost, rating, specialFeatures, cast, language);
+				film.setCast(cast);
 			}
 
-			if (film == null) {
-				System.out.println("\t*****No films found matching" + " \"" + keyword.toUpperCase() + "\""
-						+ ", please search again.*****");
-				film = new Film();
-			}
 			rs.close();
-			stmt.close();
 			conn.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-
-		catch (SQLException sqlex) {
-			System.err.println("Error retrieving film keyword " + keyword.toUpperCase());
-			sqlex.printStackTrace();
-		}
-
-		return filmsList;
+		
+		return film;
 	}
 
+
 	@Override
-	public Language getLanguageByFilmId(int filmId) {
+	public String getLanguageByFilmId(int filmId) {
 		String sql = "SELECT name FROM language WHERE id = ?";
-		Language language = null;
+		String language = null;
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -179,7 +177,7 @@ public class FilmDAOImpl implements FilmDAO {
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				String name = rs.getString(1);
-				language = new Language(name);
+				language = new String(name);
 
 			}
 			rs.close();
@@ -218,7 +216,7 @@ public class FilmDAOImpl implements FilmDAO {
 				String specialFeatures = rs.getString(11);
 
 				List<Actor> cast = getActorsByFilmId(id);
-				Language language = getLanguageByFilmId(id);
+				String language = getLanguageByFilmId(id);
 				film = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
 						replacementCost, rating, specialFeatures, cast, language);
 

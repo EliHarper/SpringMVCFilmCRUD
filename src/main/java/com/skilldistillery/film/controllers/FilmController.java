@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.film.data.FilmDAO;
+import com.skilldistillery.film.entities.Film;
 
 @Controller
 public class FilmController {
@@ -28,10 +29,10 @@ public class FilmController {
 	}
 	
 	@RequestMapping(path= "addFilm.do", method= RequestMethod.GET)
-	public ModelAndView addFilm(@RequestParam("title, description, rating") String title, String description, String rating) {
+	public ModelAndView addFilm(Film film) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/views/results.jsp");
-		mv.addObject("film", filmDAO.addFilm(title, description, rating));
+		mv.addObject("film", filmDAO.addFilm(film));
 		return mv;
 	}
 	
@@ -42,6 +43,13 @@ public class FilmController {
 		mv.addObject("film", filmDAO.getFilmByKeyword(filmKeyword));
 		return mv;
 	}
+	
+	@RequestMapping(path="deleteFilm.do", method= {RequestMethod.GET})
+	public ModelAndView deleteFilm(@RequestParam("filmID") int filmId) {
+		
+		return mv;
+	}
+	
 	 @RequestMapping(path = "home.do")
 	    public ModelAndView home() {
 	        ModelAndView mv = new ModelAndView();

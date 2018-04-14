@@ -16,14 +16,14 @@ import java.util.List;
 		private String rating;
 		private String specialFeatures;
 		private List<Actor> cast;
-		private Language language;
+		private String language;
 
 		public Film() {
 		}
 
 		public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
 				double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
-				List<Actor> cast, Language language) {
+				List<Actor> cast, String language) {
 			super();
 			this.id = id;
 			this.title = title;
@@ -56,21 +56,21 @@ import java.util.List;
 			this.specialFeatures = specialFeatures;
 		}
 
-		public Film(String title, int releaseYear, String rating, List<Actor> cast, Language lanaguge, String description) {
+		public Film(String title, int releaseYear, String rating, List<Actor> cast, String language, String description) {
 			super();
 			this.title = title;
 			this.releaseYear = releaseYear;
 			this.rating = rating;
 			this.cast = cast;
-			this.language = lanaguge;
+			this.language = language;
 			this.description = description;
 		}
-		public Film(String title, int releaseYear, String rating, Language lanaguge, String description) {
+		public Film(String title, int releaseYear, String rating, String language, String description) {
 			super();
 			this.title = title;
 			this.releaseYear = releaseYear;
 			this.rating = rating;
-			this.language = lanaguge;
+			this.language = language;
 			this.description = description;
 		}
 
@@ -280,11 +280,11 @@ import java.util.List;
 			return builder.toString();
 		}
 
-		public Language getLanguage() {
+		public String getLanguage() {
 			return language;
 		}
 
-		public void setLanguage(Language language) {
+		public void setLanguage(String language) {
 			this.language = language;
 		}
 		
