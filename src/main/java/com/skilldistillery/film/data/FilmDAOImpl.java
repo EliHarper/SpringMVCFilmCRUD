@@ -302,5 +302,33 @@ public class FilmDAOImpl implements FilmDAO {
 		}
 	}
 
+	@Override
+	public int convertLangToLangId(String language) {
+		language = language.toLowerCase();
+		switch(language) {
+		
+		case "english":
+			return 1;
+			
+		case "italian":
+			return 2;
+			
+		case "japanese":
+			return 3;
+			
+		case "mandarin":
+			return 4;
+			
+		case "french":
+			return 5;
+			
+		case "german":
+			return 6;
+		
+		}
+		
+		return 0;
+	}
+
 }
 
