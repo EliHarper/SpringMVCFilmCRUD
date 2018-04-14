@@ -302,6 +302,43 @@ public class FilmDAOImpl implements FilmDAO {
 			}
 		}
 	}
+	
+	@Override
+    public Film updateFilm(Film film) {
+        String sql = "UPDATE film title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?, rating=?, special_features=?";
+         Connection conn = null;
+         try {
+              conn = DriverManager.getConnection(URL, user, pass);
+              conn.setAutoCommit(false); // Start transaction
+              PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+              st.setString(1, film.getTitle());
+              st.setString(2, film.getDescription());
+              st.setInt(3, film.getReleaseYear());
+              st.setInt(4, film.getLanguageId());
+              st.setInt(5, film.getRentalDuration());
+              st.setDouble(6, film.getRentalRate());
+              st.setInt(7, film.getLength());
+              st.setDouble(8, film.getReplacementCost());
+              st.setString(9, film.getRating());
+              st.setString(10, film.getSpecialFeatures());
+              System.out.println(st);
+              int uc = st.executeUpdate();
+              System.out.println(uc + " film record updated.");
+              // Now get the auto-generated film ID:
+              ResultSet keys = st.getGeneratedKeys();
+              if (keys.next()) {
+                System.out.println("Edited film ID: " + keys.getInt(1));
+              }
+              conn.commit();
+              film.setId(keys.getInt(1));
+              st.close();
+              conn.close();
+            } catch (SQLException e) {
+              e.printStackTrace();
+            }
+        
+        return film;
+        }
 
 	@Override
 	public int convertLangToLangId(String language) {
