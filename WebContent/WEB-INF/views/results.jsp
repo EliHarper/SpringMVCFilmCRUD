@@ -22,15 +22,19 @@
 				<h2>Rental Information:</h2>
 				<h5>
 					Rental Duration: ${f.rentalDuration}<br> Rental Rate:
-					${f.rentalRate}<br> Replacement Cost:
-					${f.replacementCost}<br> Special Features:
-					${f.specialFeatures}
+					${f.rentalRate}<br> Replacement Cost: ${f.replacementCost}<br>
+					Special Features: ${f.specialFeatures}
 				</h5>
 				<h2>Description:</h2>
 				<h5>${f.description}</h5>
-				<%-- <c:forEach var="a" items="${film.actor}">
-				${a.firstName} ${a.lastName}
-			</c:forEach> --%>
+				<h2>Cast:</h2>
+				<ul>
+					<h5>
+						<c:forEach var="a" items="${f.cast}">
+							<li>${a}</li>
+						</c:forEach>
+				</ul>
+				</h5>
 				<form action="editFilm.do" method="GET">
 					<input type="submit" value="Edit Film">
 				</form>
@@ -39,34 +43,40 @@
 				</form>
 			</c:forEach>
 		</c:when>
+
 		<c:when test="${not empty film}">
-				<h1>Title: ${f.title}</h1>
-				<h4>ID: ${f.id}</h4>
-				<h2>Film Information:</h2>
+			<h1>Title: ${film.title}</h1>
+			<h4>ID: ${film.id}</h4>
+			<h2>Film Information:</h2>
+			<h5>
+				Release Year: ${film.releaseYear}<br>Rating: ${film.rating}<br>Length:
+				${film.length}<br>Language: ${film.language}
+			</h5>
+			<h2>Rental Information:</h2>
+			<h5>
+				Rental Duration: ${film.rentalDuration}<br> Rental Rate:
+				${film.rentalRate}<br> Replacement Cost:
+				${film.replacementCost}<br> Special Features:
+				${film.specialFeatures}
+			</h5>
+			<h2>Description:</h2>
+			<h5>${film.description}</h5>
+			<h2>Cast:</h2>
+			<ul>
 				<h5>
-					Release Year: ${f.releaseYear}<br>Rating: ${f.rating}<br>Length:
-					${f.length}<br>Language: ${f.language}
-				</h5>
-				<h2>Rental Information:</h2>
-				<h5>
-					Rental Duration: ${f.rentalDuration}<br> Rental Rate:
-					${f.rentalRate}<br> Replacement Cost:
-					${f.replacementCost}<br> Special Features:
-					${f.specialFeatures}
-				</h5>
-				<h2>Description:</h2>
-				<h5>${f.description}</h5>
-				<%-- <c:forEach var="a" items="${film.actor}">
-				${a.firstName} ${a.lastName}
-			</c:forEach> --%>
-				<form action="editFilm.do" method="GET">
-					<input type="submit" value="Edit Film">
-				</form>
-				<form action="deleteFilm.do" method="GET">
-					<input type="submit" value="Delete Film">
-				</form>
+					<c:forEach var="a" items="${film.cast}">
+						<li>${a}</li>
+					</c:forEach>
+			</ul>
+			</h5>
+			<form action="editFilm.do" method="GET">
+				<input type="submit" value="Edit Film">
+			</form>
+			<form action="deleteFilm.do" method="GET">
+				<input type="submit" value="Delete Film">
+			</form>
 		</c:when>
-		
+
 		<c:otherwise>
 			<p>No film found</p>
 		</c:otherwise>
