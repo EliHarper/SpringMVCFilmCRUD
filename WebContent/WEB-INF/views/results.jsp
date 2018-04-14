@@ -12,14 +12,15 @@
 	<c:choose>
 		<c:when test="${! empty film}">
 			<h1>Title: ${film.title}</h1>
-			<h3>Film Information: ${film.releaseYear}	<br> ${film.rating}	<br>${film.length}	<br>${film.language}</h3>
-			<h4>Rental Information:</h4>
-			<h3>Rental Duration: ${film.rentalDuration}</h3>
-			<h3>Rental Rate: ${film.rentalRate}</h3>
-			<h3>Replacement Cost: ${film.replacementCost}</h3>
-			<h4>Special Features: ${film.specialFeatures}</h4>
-			<h4>Description:</h4>
-			<p>${film.description}</p>
+			<h2>Film Information: 
+			<h4>Release Year: ${film.releaseYear}<br>Rating: ${film.rating}<br>Length: ${film.length}<br>Language: ${film.language}</h2></h4>
+			<h2>Rental Information:</h2>
+			<h4>Rental Duration: ${film.rentalDuration}<br>
+			Rental Rate: ${film.rentalRate}<br>
+			Replacement Cost: ${film.replacementCost}<br>
+			Special Features: ${film.specialFeatures}</h4>
+			<h2>Description:</h2>
+			<h4>${film.description}</h4>
 			<input type="submit" value="Edit Film">
 			<input type="checkbox" name="delete">
 			
