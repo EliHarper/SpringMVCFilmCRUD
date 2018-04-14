@@ -11,7 +11,7 @@ import com.skilldistillery.film.entities.Film;
 	  public Film getFullFilmById(int filmId);
 	  public Actor getActorById(int actorId);
 	  public List<Actor> getActorsByFilmId(int filmId);
-
+	  public int convertLangToLangId(String language);
 	  public Film getFilmByKeyword(String keyword);
 	  public String getLanguageByFilmId(int filmId);
 	  public Film addFilm(Film film);

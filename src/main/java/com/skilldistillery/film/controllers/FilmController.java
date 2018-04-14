@@ -32,6 +32,7 @@ public class FilmController {
 
     public ModelAndView addFilm(Film film) {
         ModelAndView mv = new ModelAndView();
+        film.setLanguageId(filmDAO.convertLangToLangId(film.getLanguage()));
         filmDAO.addFilm(film);
         mv.setViewName("WEB-INF/views/results.jsp");
         mv.addObject("film", filmDAO.addFilm(film));
