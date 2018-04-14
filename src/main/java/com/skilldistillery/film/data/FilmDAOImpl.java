@@ -36,7 +36,6 @@ public class FilmDAOImpl implements FilmDAO {
 				List<Actor> cast = getActorsByFilmId(id);
 				String language = getLanguageByFilmId(lanaguageId);
 				film = new Film(title, releaseYear, rating, cast, language, description);
-
 			}
 			rs.close();
 			stmt.close();
@@ -124,7 +123,8 @@ public class FilmDAOImpl implements FilmDAO {
 	}
 
 	@Override
-	public Film getFilmByKeyword(String keyword) {
+	public List<Film> getFilmByKeyword(String keyword) {
+		List<Film> films = new ArrayList<>();
 		Film film = null;
 		String sql = "SELECT f.title, f.description, f.release_year, f.language_id, f.rental_duration, f.rental_rate, f.length, f.replacement_cost, f.rating, f.special_features, f.id, l.name, c.name from film f join language l on l.id = f.language_id join film_category fc on f.id = fc.film_id join category c on fc.category_id = c.id where title like ? or description like ?;";
 		
@@ -153,6 +153,7 @@ public class FilmDAOImpl implements FilmDAO {
 				film = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
 						replacementCost, rating, specialFeatures, cast, language);
 				film.setCast(cast);
+				films.add(film);
 			}
 
 			rs.close();
@@ -162,7 +163,7 @@ public class FilmDAOImpl implements FilmDAO {
 			e.printStackTrace();
 		}
 		
-		return film;
+		return films;
 	}
 
 
