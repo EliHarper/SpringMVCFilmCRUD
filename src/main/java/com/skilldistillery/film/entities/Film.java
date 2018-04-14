@@ -19,7 +19,6 @@ import java.util.List;
 		private Language language;
 
 		public Film() {
-
 		}
 
 		public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,

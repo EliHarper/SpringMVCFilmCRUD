@@ -21,14 +21,13 @@ public class FilmController {
 	
 	@RequestMapping(path= "filmId.do", method= RequestMethod.GET)
 	public ModelAndView getFilmById(@RequestParam("filmID") Integer filmId) {
-
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/views/results.jsp");
 		mv.addObject("film", filmDAO.getFullFilmById(filmId));
 		return mv;
 	}
 	
-	@RequestMapping(path= "home.do", method= RequestMethod.GET)
+	@RequestMapping(path= "addFilm.do", method= RequestMethod.GET)
 	public ModelAndView addFilm(@RequestParam("title, description, rating") String title, String description, String rating) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/views/results.jsp");
@@ -36,10 +35,10 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(params="filmKeyword", path="home.do", method= {RequestMethod.GET})
+	@RequestMapping(path="filmKeyword.do", method= {RequestMethod.GET})
 	public ModelAndView searchFilmByKeyword(@RequestParam("filmKeyword") String filmKeyword) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("WEB-INF/results.jsp");
+		mv.setViewName("WEB-INF/views/results.jsp");
 		mv.addObject("film", filmDAO.getFilmByKeyword(filmKeyword));
 		return mv;
 	}
