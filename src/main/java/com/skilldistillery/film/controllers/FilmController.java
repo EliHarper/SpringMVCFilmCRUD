@@ -42,7 +42,7 @@ public class FilmController {
 	public ModelAndView searchFilmByKeyword(@RequestParam("filmKeyword") String filmKeyword) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/views/results.jsp");
-		mv.addObject("film", filmDAO.getFilmByKeyword(filmKeyword));
+		mv.addObject("films", filmDAO.getFilmByKeyword(filmKeyword));
 		return mv;
 	}
 	
