@@ -14,7 +14,7 @@ import com.skilldistillery.film.entities.Language;
 	  public List<Actor> getActorsByFilmId(int filmId);
 	  public List<Film> getFilmByKeyword(String keyword);
 	  public Language getLanguageByFilmId(int filmId);
-	  public Film addFilm(String title, String desc, String rating);
+	  public Film addFilm(Film film);
 	  public void deleteFilm(int filmId);
 	}
 
