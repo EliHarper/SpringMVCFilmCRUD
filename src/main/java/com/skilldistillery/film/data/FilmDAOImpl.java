@@ -230,57 +230,41 @@ public class FilmDAOImpl implements FilmDAO {
 	}
 
 	@Override
-	public Film addFilm(String title, String desc, String rating) {
-		Film addedFilm = new Film();
-		Connection conn = null;
-		String sql;
-		int newFilmID = 0;
-		try {
-			conn = DriverManager.getConnection(URL, user, pass);
-			sql = "INSERT INTO film (title, description, language_id, rating ) VALUES(?, ?, '1', ?)";
-			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			conn.setAutoCommit(false); // Start transaction
-			stmt.setString(1, title);
-			stmt.setString(2, desc);
-			stmt.setString(3, rating);
-			int updatedCount = stmt.executeUpdate();
-
-			addedFilm.setTitle(title);
-			addedFilm.setDescription(desc);
-			addedFilm.setLanguageId(1);
-			addedFilm.setRating(rating);
-
-			if (updatedCount == 1) { // Insert succeeded
-				ResultSet rs = stmt.getGeneratedKeys();
-
-				if (rs.next()) {
-					newFilmID = rs.getInt(1);
-
-					System.out.println("New film ID is: " + newFilmID);
-
-				}
-
-			}
-			conn.commit();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.err.println("Error during inserts.");
-			// e.printStackTrace();
-			System.err.println("SQL Error: " + e.getErrorCode() + ": " + e.getMessage());
-			System.err.println("SQL State: " + e.getSQLState());
-			// Need to rollback, which also throws SQLException.
-			if (conn != null) {
-				try {
-					conn.rollback();
-				} catch (SQLException e1) {
-					System.err.println("Error rolling back.");
-					e1.printStackTrace();
-				}
-			}
-		}
-
-		return addedFilm;
+	public Film addFilm(Film film) {
+		 String sql = "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		 Connection conn = null;
+		    try {
+		      conn = DriverManager.getConnection(URL, user, pass);
+		      conn.setAutoCommit(false); // Start transaction
+		      PreparedStatement st = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		      st.setString(1, film.getTitle());
+		      st.setString(2, film.getDescription());
+		      st.setInt(3, film.getReleaseYear());
+		      st.setInt(4, film.getLanguageId());
+		      st.setInt(5, film.getRentalDuration());
+		      st.setInt(6, film.getRentalRate());
+		      st.setInt(7, film.getLength());
+		      st.setInt(8, film.getReplacementCost());
+		      st.setString(9, film.getRating());
+		      st.setString(10, film.getSpecialFeatures());
+		      System.out.println(st);
+		      int uc = st.executeUpdate();
+		      System.out.println(uc + " film record created.");
+		      // Now get the auto-generated film ID:
+		      ResultSet keys = st.getGeneratedKeys();
+		      if (keys.next()) {
+		        System.out.println("New film ID: " + keys.getInt(1));
+		      }
+		      conn.commit();
+		      film.setId(keys.getInt(1));
+		      st.close();
+		      conn.close();
+		    } catch (SQLException e) {
+		      e.printStackTrace();
+		    }
+		
+		return film;
+		
 	}
 
 	@Override
