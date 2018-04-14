@@ -12,8 +12,8 @@
 	<c:choose>
 		<c:when test="${! empty film}">
 			<h1>Title: ${film.title}</h1>
-			<h2>Film Information: 
-			<h4>Release Year: ${film.releaseYear}<br>Rating: ${film.rating}<br>Length: ${film.length}<br>Language: ${film.language}</h2></h4>
+			<h2>Film Information: </h2>
+			<h4>Release Year: ${film.releaseYear}<br>Rating: ${film.rating}<br>Length: ${film.length}<br>Language: ${film.language}</h4>
 			<h2>Rental Information:</h2>
 			<h4>Rental Duration: ${film.rentalDuration}<br>
 			Rental Rate: ${film.rentalRate}<br>

@@ -13,11 +13,45 @@
 	<form action="filmKeyword.do" method="GET">
 		<input type="text" name="filmKeyword" value="${filmKeyword}">
 		<input type="submit" value="Look up film by Keyword">
+
+		<c:choose>
+			<c:when test="${film != null}">
+				<c:forEach var="films" items="${film}">
+					<h1>Title: ${film.title}</h1>
+					<h3>Film Information: ${film.releaseYear} | ${film.rating}
+						| ${film.length} | ${film.language}</h3>
+					<h4>Rental Information:</h4>
+					<h3>Rental Duration: ${film.rentalDuration}</h3>
+					<h3>Rental Rate: ${film.rentalRate}</h3>
+					<h3>Replacement Cost: ${film.replacementCost}</h3>
+					<h4>Special Features: ${film.specialFeatures}</h4>
+					<h4>Description:</h4>
+					<p>${film.description}</p>
+				</c:forEach>
+			</c:when>
+		</c:choose>
 	</form>
 
 	<form action="filmId.do" method="GET">
-		<input type="text" name="filmID" value="${filmId}"> 
-		<input type="submit" value="Look up film by ID">
+		<input type="text" name="filmID" value="${filmID}"> <input
+			type="submit" value="Look up film by ID">
+
+		<c:choose>
+			<c:when test="${film != null}">
+				<c:forEach var="films" items="${film}">
+					<h1>Title: ${film.title}</h1>
+					<h3>Film Information: ${film.releaseYear} | ${film.rating}
+						|${film.length} | ${film.language}</h3>
+					<h4>Rental Information:</h4>
+					<h3>Rental Duration: ${film.rentalDuration}</h3>
+					<h3>Rental Rate: ${film.rentalRate}</h3>
+					<h3>Replacement Cost: ${film.replacementCost}</h3>
+					<h4>Special Features: ${film.specialFeatures}</h4>
+					<h4>Description:</h4>
+					<p>${film.description}</p>
+				</c:forEach>
+			</c:when>
+		</c:choose>
 	</form>
 	
 	<form action="addFilm.do" method="GET">
