@@ -27,34 +27,19 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(params="title, description, rating", path= "addedFilm.do", method= {RequestMethod.GET})
+	@RequestMapping(params= {"title", "description", "rating"}, path= "addedFilm.do", method= {RequestMethod.GET})
 	public ModelAndView addFilm(@RequestParam("title, description, rating") String title, String description, String rating) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("WEB-INF/result.jsp");
 		mv.addObject("film", filmDAO.addFilm(title, description, rating));
 		return mv;
 	}
-//	public class StateController {
-//		@Autowired
-//		StateDAO stateDAO;
-//
-//		public void setStateDAO(StateDAO stateDAO) {
-//			this.stateDAO = stateDAO;
-//		}
-//
-//		@RequestMapping(params="name",path = "GetStateData.do", method = { RequestMethod.GET })
-//		public ModelAndView getStateByName(@RequestParam("name") String name) {
-//			ModelAndView mv = new ModelAndView();
-//			mv.setViewName("WEB-INF/result.jsp");
-//			mv.addObject("state", stateDAO.getStateByName(name));
-//			return mv;
-//		}
-//
-//		@RequestMapping(params="abbr", path = "GetStateData.do", method = { RequestMethod.GET })
-//		public ModelAndView getStateByAbbr(@RequestParam("abbr") String abbr) {
-//			ModelAndView mv = new ModelAndView();
-//			mv.setViewName("WEB-INF/result.jsp");
-//			mv.addObject("state", stateDAO.getStateByAbbreviation(abbr));
-//			return mv;
-		
+	
+	@RequestMapping(params="filmKeyword", path="results.do", method= {RequestMethod.GET})
+	public ModelAndView searchFilmByKeyword(@RequestParam("filmKeyword") String filmKeyword) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/result.jsp");
+		mv.addObject("film", filmDAO.getFilmByKeyword(filmKeyword));
+		return mv;
+	}
 }
