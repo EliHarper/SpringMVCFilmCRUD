@@ -12,7 +12,7 @@ import com.skilldistillery.film.entities.Film;
 	  public Actor getActorById(int actorId);
 	  public List<Actor> getActorsByFilmId(int filmId);
 
-	  public List<Film> getFilmByKeyword(String keyword);
+	  public Film getFilmByKeyword(String keyword);
 	  public String getLanguageByFilmId(int filmId);
 	  public Film addFilm(Film film);
 	  public void deleteFilm(int filmId);

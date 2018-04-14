@@ -12,18 +12,33 @@
 	<c:choose>
 		<c:when test="${! empty film}">
 			<h1>Title: ${film.title}</h1>
-			<h2>Film Information: </h2>
-			<h4>Release Year: ${film.releaseYear}<br>Rating: ${film.rating}<br>Length: ${film.length}<br>Language: ${film.language}</h4>
+			<h4>ID: ${film.id}</h4>
+			<h2>Film Information:</h2>
+			<h5>
+				Release Year: ${film.releaseYear}<br>Rating: ${film.rating}<br>Length:
+				${film.length}<br>Language: ${film.language}
+			</h5>
 			<h2>Rental Information:</h2>
-			<h4>Rental Duration: ${film.rentalDuration}<br>
-			Rental Rate: ${film.rentalRate}<br>
-			Replacement Cost: ${film.replacementCost}<br>
-			Special Features: ${film.specialFeatures}</h4>
+			<h5>
+				Rental Duration: ${film.rentalDuration}<br> Rental Rate:
+				${film.rentalRate}<br> Replacement Cost:
+				${film.replacementCost}<br> Special Features:
+				${film.specialFeatures}
+			</h5>
 			<h2>Description:</h2>
-			<h4>${film.description}</h4>
-			<input type="submit" value="Edit Film">
-			<input type="checkbox" name="delete">
-			
+			<h5>${film.description}</h5>
+			<%-- <c:forEach var="a" items="${film.actor}">
+				${a.firstName} ${a.lastName}
+			</c:forEach> --%>
+			<form action="editFilm.do" method="GET">
+				<input type="submit" value="Edit Film">
+			</form>
+			<form action="deleteFilm.do" method="GET">
+				<input type="submit" value="Delete Film">
+			</form>
+
+
+
 		</c:when>
 		<c:otherwise>
 			<p>No film found</p>

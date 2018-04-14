@@ -40,8 +40,8 @@
 			<c:when test="${film != null}">
 				<c:forEach var="films" items="${film}">
 					<h1>Title: ${film.title}</h1>
-					<h3>Film Information: ${film.releaseYear} | ${film.rating}
-						|${film.length} | ${film.language}</h3>
+					<h4>Film Information: ${film.releaseYear} | ${film.rating}
+						|${film.length} | ${film.language}</h4>
 					<h4>Rental Information:</h4>
 					<h3>Rental Duration: ${film.rentalDuration}</h3>
 					<h3>Rental Rate: ${film.rentalRate}</h3>
@@ -69,7 +69,7 @@
 			<option value="PG-13">PG-13</option>
 			<option value="R">R</option>
 			<option value="NC-17">NC-17</option>
-		</select>
+		</select><br>
 		Special Features: <input type="text" name="specialFeatures"> <br>
 		<input type="submit" value="Add New Film">
 	</form>
