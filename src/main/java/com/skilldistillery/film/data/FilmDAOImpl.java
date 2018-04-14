@@ -194,7 +194,7 @@ public class FilmDAOImpl implements FilmDAO {
 	}
 
 	@Override
-	public List<Film> getFullFilmById(int filmId) {
+	public Film getFullFilmById(int filmId) {
 		List<Film> filmsList = new ArrayList<>();
 		String sql;
 		Film film = null;
@@ -221,7 +221,6 @@ public class FilmDAOImpl implements FilmDAO {
 				Language language = getLanguageByFilmId(id);
 				film = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
 						replacementCost, rating, specialFeatures, cast, language);
-				filmsList.add(film);
 
 			}
 		} catch (SQLException sqlex) {
@@ -229,7 +228,7 @@ public class FilmDAOImpl implements FilmDAO {
 			System.exit(1);
 		}
 
-		return filmsList;
+		return film;
 	}
 
 	@Override
