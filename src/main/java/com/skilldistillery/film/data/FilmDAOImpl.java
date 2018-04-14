@@ -194,7 +194,6 @@ public class FilmDAOImpl implements FilmDAO {
 
 	@Override
 	public Film getFullFilmById(int filmId) {
-		List<Film> filmsList = new ArrayList<>();
 		String sql;
 		Film film = null;
 		try {
@@ -270,11 +269,8 @@ public class FilmDAOImpl implements FilmDAO {
 
 	@Override
 	public void deleteFilm(int filmId) {
-		Film deletedFilm = new Film();
 		Connection conn = null;
 		String sql;
-		String title = null;
-		int newFilmID = 0;
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false); // Start transaction
