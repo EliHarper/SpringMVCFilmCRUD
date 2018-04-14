@@ -79,11 +79,10 @@
 			<option value="NC-17">NC-17</option>
 		</select><br>
 		Special Features: <select id="specialFeatures" name="specialFeatures">
-			<option value="">G</option>
-			<option value="PG">PG</option>
-			<option value="PG-13">PG-13</option>
-			<option value="R">R</option>
-			<option value="NC-17">NC-17</option>
+			<option value="Trailers">Trailers</option>
+			<option value="Commentaries">Commentaries</option>
+			<option value="Deleted Scenes">Deleted Scenes</option>
+			<option value="Behind the Scenes">Behind the Scenes</option>
 		</select><br>
 		<input type="submit" value="Add New Film">
 	</form>
