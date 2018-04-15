@@ -35,11 +35,14 @@
 						</c:forEach>
 				</ul>
 				</h5>
-				<form action="editFilm.do" method="GET">
+				<form action="updateFilm.do" method="POST">
+				${f.id}
 					<input type="submit" value="Edit Film">
+					<input type="hidden" value="${f.id}" name="fid">
 				</form>
-				<form action="deleteFilm.do" method="GET">
+				<form action="deleteFilm.do" method="POST">
 					<input type="submit" value="Delete Film">
+					<input type="hidden" value="${f.id}" name="fid">
 				</form>
 			</c:forEach>
 		</c:when>
@@ -69,10 +72,10 @@
 					</c:forEach>
 			</ul>
 			</h5>
-			<form action="editFilm.do" method="GET">
+			<form action="updateFilm.do" method="POST">
 				<input type="submit" value="Edit Film">
 			</form>
-			<form action="deleteFilm.do" method="GET">
+			<form action="deleteFilm.do" method="POST">
 				<input type="submit" value="Delete Film">
 			</form>
 		</c:when>

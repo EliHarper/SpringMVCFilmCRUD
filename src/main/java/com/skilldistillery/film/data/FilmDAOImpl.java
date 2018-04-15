@@ -126,7 +126,7 @@ public class FilmDAOImpl implements FilmDAO {
 	public List<Film> getFilmByKeyword(String keyword) {
 		List<Film> films = new ArrayList<>();
 		Film film = null;
-		String sql = "SELECT f.title, f.description, f.release_year, f.language_id, f.rental_duration, f.rental_rate, f.length, f.replacement_cost, f.rating, f.special_features, f.id, l.name, c.name from film f join language l on l.id = f.language_id join film_category fc on f.id = fc.film_id join category c on fc.category_id = c.id where title like ? or description like ?;";
+		String sql = "SELECT f.title, f.description, f.release_year, f.language_id, f.rental_duration, f.rental_rate, f.length, f.replacement_cost, f.rating, f.special_features, f.id, l.name from film f join language l on l.id = f.language_id  where f.title like ? or f.description like ?";
 		
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
@@ -147,7 +147,6 @@ public class FilmDAOImpl implements FilmDAO {
 				String specialFeatures = rs.getString(10);
 				int id = rs.getInt(11);
 				String language = rs.getString(12);
-				String genre = rs.getString(13);
 				List<Actor> cast = getActorsByFilmId(id);
 				
 				film = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
@@ -301,7 +300,7 @@ public class FilmDAOImpl implements FilmDAO {
 	
 	@Override
     public Film updateFilm(Film film) {
-        String sql = "UPDATE film title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?, rating=?, special_features=?";
+        String sql = "UPDATE film set title = ?, description = ?, release_year = ?, language_id = ?, rental_duration = ?, rental_rate = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ? where id = ?";
          Connection conn = null;
          try {
               conn = DriverManager.getConnection(URL, user, pass);
@@ -317,16 +316,16 @@ public class FilmDAOImpl implements FilmDAO {
               st.setDouble(8, film.getReplacementCost());
               st.setString(9, film.getRating());
               st.setString(10, film.getSpecialFeatures());
+              st.setInt(11, film.getId());
               System.out.println(st);
               int uc = st.executeUpdate();
-              System.out.println(uc + " film record updated.");
               // Now get the auto-generated film ID:
-              ResultSet keys = st.getGeneratedKeys();
-              if (keys.next()) {
-                System.out.println("Edited film ID: " + keys.getInt(1));
-              }
+//              ResultSet keys = st.getGeneratedKeys();
+//              if (keys.next()) {
+////                System.out.println("Edited film ID: " + keys.getInt(1));
+//              }
               conn.commit();
-              film.setId(keys.getInt(1));
+//              film.setId(keys.getInt(1));
               st.close();
               conn.close();
             } catch (SQLException e) {

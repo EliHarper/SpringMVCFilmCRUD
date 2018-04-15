@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h2>Update Film:</h2>
-	<form action="updateFilm.do" method="GET">
+	<form action="updateFilm.do" method="POST">
 		Title: <input type="text" name="title" value="${film.title}"> <br> 
 		Description: <input type="text" name="description" value="${film.description}"> <br>
 		Release Year: <input type="text" name="releaseYear" value="${film.releaseYear}"> <br>
@@ -39,7 +39,10 @@
 			<option value="Deleted Scenes">Deleted Scenes</option>
 			<option value="Behind the Scenes">Behind the Scenes</option>
 		</select><br>
-		<input type="submit" value="Add New Film">
 	</form>
+		<form action="results.do" method="POST">
+					<input type="submit" value="Update Film">
+					<input type="hidden" value="${film.id}" name="fid">
+		</form>
 </body>
 </html>

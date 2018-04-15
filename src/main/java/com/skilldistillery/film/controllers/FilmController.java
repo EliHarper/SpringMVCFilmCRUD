@@ -28,14 +28,35 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(path= "addFilm.do", method= RequestMethod.GET)
+	@RequestMapping(path= "addFilm.do", method= RequestMethod.POST)
     public ModelAndView addFilm(Film film) {
         ModelAndView mv = new ModelAndView();
         film.setLanguageId(filmDAO.convertLangToLangId(film.getLanguage()));
-        filmDAO.addFilm(film);
         mv.setViewName("WEB-INF/views/results.jsp");
         mv.addObject("film", filmDAO.addFilm(film));
         return mv;
+	}
+	@RequestMapping(path= "updateFilm.do", method= RequestMethod.POST)
+	public ModelAndView resultsToUpdateFilm(@RequestParam(name="fid")Integer filmId) {
+		Film film = filmDAO.getFilmById(filmId);
+		ModelAndView mv = new ModelAndView();
+		//film.setLanguageId(filmDAO.convertLangToLangId(film.getLanguage()));
+		mv.setViewName("WEB-INF/views/updateFilm.jsp");
+		System.out.println(filmId);
+		mv.addObject("film", film);
+		return mv;
+	}
+	
+	@RequestMapping(path= "results.do", method= RequestMethod.POST)
+	public ModelAndView updateFilm(@RequestParam(name="fid") Integer filmId) {
+		Film film = filmDAO.getFilmById(filmId);
+		Film updatedFilm = filmDAO.updateFilm(film);
+		ModelAndView mv = new ModelAndView();
+//		film.setLanguageId(filmDAO.convertLangToLangId(updatedFilm.getLanguage()));
+		mv.setViewName("WEB-INF/views/results.jsp");
+//		System.out.println(updatedFilm);
+		mv.addObject("film", updatedFilm);
+		return mv;
 	}
 	
 	@RequestMapping(path="filmKeyword.do", method= {RequestMethod.GET})
@@ -46,7 +67,7 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(path="deleteFilm.do", method= {RequestMethod.GET})
+	@RequestMapping(path="deleteFilm.do", method= {RequestMethod.POST})
 	public ModelAndView deleteFilm(@RequestParam("filmID") int filmId) {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDAO.getFilmById(filmId);

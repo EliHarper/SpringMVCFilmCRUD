@@ -55,7 +55,7 @@
 	</form><br><br><br>
 	<h2>Add a Film:</h2>
 	
-	<form action="addFilm.do" method="GET">
+	<form action="addFilm.do" method="POST">
 		Title: <input type="text" name="title"> <br> 
 		Description: <input type="text" name="description"> <br>
 		Release Year: <input type="text" name="releaseYear"> <br>
