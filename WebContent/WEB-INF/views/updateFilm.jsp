@@ -11,16 +11,16 @@
 <body>
 	<h2>Update Film:</h2>
 	<form action="results.do" method="GET">
-		Film ID: <input type="text" name="newFilmId" value="${film.id}"><br>
-		Title: <input type="text" name="newTitle" value="${film.title}"> <br> 
-		Description: <input type="text" name="newDescription" value="${film.description}"> <br>
-		Release Year: <input type="text" name="newReleaseYear" value="${film.releaseYear}"> <br>
-		languageId <input type="text" name="newLanguageId" value="${film.languageId}">
-		Rental Duration: <input type="text" name="newRentalDuration" value="${film.rentalDuration}"> <br>
-		Rental Rate: <input type="text" name="newRentalRate" value="${film.rentalRate}"> <br>
-		Length: <input type="text" name="newLength" value="${film.length}"> <br>
-		Replacement Cost: <input type="text" name="newReplacementCost" value="${film.replacementCost}"> <br>
-		Rating: <select id="rating" name="newRating" value="${film.rating}">
+		Film ID: <input type="text" name="filmId" value="${film.id}"><br>
+		Title: <input type="text" name="title" value="${film.title}"> <br> 
+		Description: <input type="text" name="description" value="${film.description}"> <br>
+		Release Year: <input type="text" name="releaseYear" value="${film.releaseYear}"> <br>
+		languageId <input type="text" name="languageId" value="${film.languageId}">
+		Rental Duration: <input type="text" name="rentalDuration" value="${film.rentalDuration}"> <br>
+		Rental Rate: <input type="text" name="rentalRate" value="${film.rentalRate}"> <br>
+		Length: <input type="text" name="length" value="${film.length}"> <br>
+		Replacement Cost: <input type="text" name="replacementCost" value="${film.replacementCost}"> <br>
+		Rating: <select id="rating" name="rating" value="${film.rating}">
 			<option value="G">G</option>
 			<option value="PG">PG</option>
 			<option value="PG-13">PG-13</option>
