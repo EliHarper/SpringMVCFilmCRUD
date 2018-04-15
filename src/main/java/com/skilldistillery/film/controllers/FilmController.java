@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.film.data.FilmDAO;
 import com.skilldistillery.film.entities.Film;
@@ -36,9 +37,10 @@ public class FilmController {
         mv.addObject("film", filmDAO.addFilm(film));
         return mv;
 	}
-	@RequestMapping(path= "updateFilm.do", method= RequestMethod.POST)
-	public ModelAndView resultsToUpdateFilm(@RequestParam(name="fid")Integer filmId) {
-		Film film = filmDAO.getFilmById(filmId);
+
+	@RequestMapping(path= "updateFilm.do", method= RequestMethod.GET)
+	public ModelAndView homeToUpdateFilm(RedirectAttributes redir, @RequestParam(name="id")Integer filmId) {
+		Film film = filmDAO.getFullFilmById(filmId);
 		ModelAndView mv = new ModelAndView();
 		//film.setLanguageId(filmDAO.convertLangToLangId(film.getLanguage()));
 		mv.setViewName("WEB-INF/views/updateFilm.jsp");
@@ -47,15 +49,15 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(path= "results.do", method= RequestMethod.POST)
-	public ModelAndView updateFilm(@RequestParam(name="fid") Integer filmId) {
-		Film film = filmDAO.getFilmById(filmId);
-		Film updatedFilm = filmDAO.updateFilm(film);
+	@RequestMapping(path= "results.do", method= RequestMethod.GET)
+	public ModelAndView updateFilm(Integer filmId, String title, String description, Integer releaseYear, Integer languageId, Integer rentalDuration, Double rentalRate, Integer length, Double replacementCost, String rating) {
+		Film film = new Film(filmId, title, description, releaseYear, languageId, rentalDuration, rentalRate, length, replacementCost, rating);
+		filmDAO.updateFilm(film);
 		ModelAndView mv = new ModelAndView();
 //		film.setLanguageId(filmDAO.convertLangToLangId(updatedFilm.getLanguage()));
 		mv.setViewName("WEB-INF/views/results.jsp");
 //		System.out.println(updatedFilm);
-		mv.addObject("film", updatedFilm);
+		mv.addObject("film", film);
 		return mv;
 	}
 	
@@ -67,8 +69,8 @@ public class FilmController {
 		return mv;
 	}
 	
-	@RequestMapping(path="deleteFilm.do", method= {RequestMethod.POST})
-	public ModelAndView deleteFilm(@RequestParam("filmID") int filmId) {
+	@RequestMapping(path="deleteFilm.do", method= {RequestMethod.GET})
+	public ModelAndView deleteFilm(RedirectAttributes redir, @RequestParam("filmID") int filmId) {
 		ModelAndView mv = new ModelAndView();
 		Film film = filmDAO.getFilmById(filmId);
 		mv.setViewName("WEB-INF/views/results.jsp");

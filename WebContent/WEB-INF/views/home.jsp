@@ -86,5 +86,11 @@
 		</select><br>
 		<input type="submit" value="Add New Film">
 	</form>
+	<br><br><br>
+	<h2>Update a Film:</h2>
+	<form action="updateFilm.do" method="GET">
+		Please enter the ID of the film you would like to update: <input type=text" name="id"> <br>
+		<input type="submit" value="Update Film">
+	</form>
 </body>
 </html>

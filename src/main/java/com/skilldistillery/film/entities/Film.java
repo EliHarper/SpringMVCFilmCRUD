@@ -75,6 +75,21 @@ import java.util.List;
 		}
 
 
+		public Film(int id, String title, String description, Integer releaseYear, Integer languageId,
+				Integer rentalDuration, Double rentalRate, Integer length, Double replacementCost, String rating) {
+			super();
+			this.id = id;
+			this.title = title;
+			this.description = description;
+			this.releaseYear = releaseYear;
+			this.languageId = languageId;
+			this.rentalDuration = rentalDuration;
+			this.rentalRate = rentalRate;
+			this.length = length;
+			this.replacementCost = replacementCost;
+			this.rating = rating;
+		}
+
 		public int getId() {
 			return id;
 		}
