@@ -11,6 +11,7 @@
 <body>
 	<h2>Update Film:</h2>
 	<form action="results.do" method="GET">
+	<c:if test="${not empty film}">
 		Film ID: <input type="text" name="filmId" value="${film.id}"><br>
 		Title: <input type="text" name="title" value="${film.title}"> <br> 
 		Description: <input type="text" name="description" value="${film.description}"> <br>
@@ -27,6 +28,7 @@
 			<option value="R">R</option>
 			<option value="NC-17">NC-17</option>
 		</select><br>
+		</c:if>
 	
 		<input type="hidden" name="id" value="${film.id}"/>
 		<input type="submit" value="Update Film">
