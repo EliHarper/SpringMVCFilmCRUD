@@ -16,7 +16,7 @@
 		Title: <input type="text" name="title" value="${film.title}"> <br> 
 		Description: <input type="text" name="description" value="${film.description}"> <br>
 		Release Year: <input type="text" name="releaseYear" value="${film.releaseYear}"> <br>
-		languageId <input type="text" name="languageId" value="${film.languageId}">
+		Language Id: <input type="text" name="languageId" value="${film.languageId}"><br>
 		Rental Duration: <input type="text" name="rentalDuration" value="${film.rentalDuration}"> <br>
 		Rental Rate: <input type="text" name="rentalRate" value="${film.rentalRate}"> <br>
 		Length: <input type="text" name="length" value="${film.length}"> <br>
