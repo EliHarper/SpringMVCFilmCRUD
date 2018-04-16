@@ -17,13 +17,14 @@ import java.util.List;
 		private String specialFeatures;
 		private List<Actor> cast;
 		private String language;
+		private Category category;
 
 		public Film() {
 		}
 
 		public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
 				double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
-				List<Actor> cast, String language) {
+				List<Actor> cast, String language, Category category) {
 			super();
 			this.id = id;
 			this.title = title;
@@ -38,6 +39,7 @@ import java.util.List;
 			this.specialFeatures = specialFeatures;
 			this.cast = cast;
 			this.language = language;
+			this.category = category;
 		}
 
 		public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
@@ -54,6 +56,37 @@ import java.util.List;
 			this.replacementCost = replacementCost;
 			this.rating = rating;
 			this.specialFeatures = specialFeatures;
+		}
+		
+		public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
+				double rentaRate, int length, double replacementCost, String rating) {
+			super();
+			this.id = id;
+			this.title = title;
+			this.description = description;
+			this.releaseYear = releaseYear;
+			this.languageId = languageId;
+			this.rentalDuration = rentalDuration;
+			this.rentalRate = rentaRate;
+			this.length = length;
+			this.replacementCost = replacementCost;
+			this.rating = rating;
+		}
+		
+		public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
+				double rentaRate, int length, double replacementCost, String rating, Category category) {
+			super();
+			this.id = id;
+			this.title = title;
+			this.description = description;
+			this.releaseYear = releaseYear;
+			this.languageId = languageId;
+			this.rentalDuration = rentalDuration;
+			this.rentalRate = rentaRate;
+			this.length = length;
+			this.replacementCost = replacementCost;
+			this.rating = rating;
+			this.category = category;
 		}
 
 		public Film(String title, int releaseYear, String rating, List<Actor> cast, String language, String description) {
@@ -76,7 +109,7 @@ import java.util.List;
 
 
 		public Film(int id, String title, String description, Integer releaseYear, Integer languageId,
-				Integer rentalDuration, Double rentalRate, Integer length, Double replacementCost, String rating) {
+				Integer rentalDuration, Double rentalRate, Integer length, Double replacementCost, String rating, String language) {
 			super();
 			this.id = id;
 			this.title = title;
@@ -88,6 +121,7 @@ import java.util.List;
 			this.length = length;
 			this.replacementCost = replacementCost;
 			this.rating = rating;
+			this.language = language;
 		}
 
 		public int getId() {
@@ -319,6 +353,14 @@ import java.util.List;
 			builder.append("\nDescription: ");
 			builder.append(description);
 			return builder.toString();
+		}
+
+		public Category getCategory() {
+			return category;
+		}
+
+		public void setCategory(Category category) {
+			this.category = category;
 		}
 
 	

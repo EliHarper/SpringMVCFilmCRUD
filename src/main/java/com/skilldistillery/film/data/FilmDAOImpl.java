@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.skilldistillery.film.entities.Actor;
+import com.skilldistillery.film.entities.Category;
 import com.skilldistillery.film.entities.Film;
 
 public class FilmDAOImpl implements FilmDAO {
@@ -148,10 +149,11 @@ public class FilmDAOImpl implements FilmDAO {
 				int id = rs.getInt(11);
 				String language = rs.getString(12);
 				List<Actor> cast = getActorsByFilmId(id);
+				Category category = getCategoryById(id);
 				
 				film = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
-						replacementCost, rating, specialFeatures, cast, language);
-				film.setCast(cast);
+						replacementCost, rating, specialFeatures, cast, language, category);
+				
 				films.add(film);
 			}
 
@@ -163,6 +165,30 @@ public class FilmDAOImpl implements FilmDAO {
 		}
 		
 		return films;
+	}
+	
+	public Category getCategoryById(int filmId) {
+		Category category = null;
+		String sql = "select c.id, c.name from category c join film_category fc on fc.category_id = c.id join film f on f.id = fc.film_id where f.id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				int id = rs.getInt(1);
+				String name = rs.getString(2);
+				category = new Category(id, name);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return category;
 	}
 
 
@@ -216,8 +242,10 @@ public class FilmDAOImpl implements FilmDAO {
 
 				List<Actor> cast = getActorsByFilmId(id);
 				String language = getLanguageByFilmId(id);
+				Category category = getCategoryById(id);
+				
 				film = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
-						replacementCost, rating, specialFeatures, cast, language);
+						replacementCost, rating, specialFeatures, cast, language, category);
 
 			}
 		} catch (SQLException sqlex) {
@@ -277,9 +305,7 @@ public class FilmDAOImpl implements FilmDAO {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			stmt.executeUpdate();
-				System.out.println("Film deleted successfully");
 			conn.commit();
-			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println("Error during inserts.");
@@ -297,7 +323,7 @@ public class FilmDAOImpl implements FilmDAO {
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	@Override

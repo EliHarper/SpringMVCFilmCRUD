@@ -23,7 +23,7 @@
 				<h5>
 					Rental Duration: ${f.rentalDuration}<br> Rental Rate:
 					${f.rentalRate}<br> Replacement Cost: ${f.replacementCost}<br>
-					Special Features: ${f.specialFeatures}
+					Special Features: ${f.specialFeatures}<br>Category: ${f.category}
 				</h5>
 				<h2>Description:</h2>
 				<h5>${f.description}</h5>
@@ -54,7 +54,7 @@
 				Rental Duration: ${film.rentalDuration}<br> Rental Rate:
 				${film.rentalRate}<br> Replacement Cost:
 				${film.replacementCost}<br> Special Features:
-				${film.specialFeatures}
+				${film.specialFeatures}<br>Category: ${film.category}
 			</h5>
 			<h2>Description:</h2>
 			<h5>${film.description}</h5>

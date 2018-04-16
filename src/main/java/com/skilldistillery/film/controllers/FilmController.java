@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.film.data.FilmDAO;
+import com.skilldistillery.film.entities.Category;
 import com.skilldistillery.film.entities.Film;
 
 @Controller
@@ -86,9 +87,14 @@ public class FilmController {
 	 @RequestMapping(path = "deleteResult.do", method= {RequestMethod.POST})
 	 public ModelAndView homeFromDelete(@RequestParam("id") int filmId) {
 		 ModelAndView mv = new ModelAndView();
-		 if (filmDAO.deleteFilm(filmId)) {
+		 boolean b = filmDAO.deleteFilm(filmId);
+		 if (b) {
 			 mv.setViewName("WEB-INF/views/deleteResult.jsp");
 		 }
+		 else {
+			 mv.setViewName("WEB-INF/views/deleteFail.jsp");
+		 }
+		 
 		 return mv;
 	 }
 }
