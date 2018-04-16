@@ -35,19 +35,15 @@
 						</c:forEach>
 				</ul>
 				</h5>
-				<form action="updateFilm.do">
-				<input type="hidden" name="id" value="${f.id}"/>
-				<input type="submit" value="Update Film" />
+				
 	</form>
-				<form action="deleteFilm.do" method="POST">
-					<input type="submit" value="Delete Film">
-				</form>
+				
 			</c:forEach>
 		</c:when>
 
 		<c:when test="${not empty film}">
 			<h1>Title: ${film.title}</h1>
-			Film ID: <input type="text" name="filmId" value="${film.id}">
+			<h4>Film ID: ${film.id}</h4>
 			<h2>Film Information:</h2>
 			<h5>
 				Release Year: ${film.releaseYear}<br>Rating: ${film.rating}<br>Length:
@@ -70,13 +66,8 @@
 					</c:forEach>
 			</ul>
 			</h5>
-			<form action="updateFilm.do" method="GET">
-		<input type="hidden" name="id" value="${film.id}"/>
-		 <input type="submit" value="Update Film" />
 	</form>
-			<form action="deleteFilm.do" method="POST">
-				<input type="submit" value="Delete Film">
-			</form>
+			
 		</c:when>
 
 		<c:otherwise>

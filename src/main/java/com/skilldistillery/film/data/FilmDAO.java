@@ -15,7 +15,7 @@ import com.skilldistillery.film.entities.Film;
 	  public List<Film> getFilmByKeyword(String keyword);
 	  public String getLanguageByFilmId(int filmId);
 	  public Film addFilm(Film film);
-	  public void deleteFilm(int filmId);
+	  public boolean deleteFilm(int filmId);
 	  public boolean updateFilm(Film film);
 	}
 

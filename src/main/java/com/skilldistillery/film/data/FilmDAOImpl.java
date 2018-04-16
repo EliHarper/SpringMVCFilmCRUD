@@ -267,7 +267,7 @@ public class FilmDAOImpl implements FilmDAO {
 	}
 
 	@Override
-	public void deleteFilm(int filmId) {
+	public boolean deleteFilm(int filmId) {
 		Connection conn = null;
 		String sql;
 		try {
@@ -277,9 +277,11 @@ public class FilmDAOImpl implements FilmDAO {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			int updateCount = stmt.executeUpdate();
-			System.out.println("Film with id \"" + filmId + "\" has been removed.");
+			if (updateCount == 1) {
+				System.out.println("Film deleted successfully");
+				return true;
+			}
 			conn.commit();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println("Error during inserts.");
@@ -296,6 +298,7 @@ public class FilmDAOImpl implements FilmDAO {
 				}
 			}
 		}
+		return false;
 	}
 	
 	@Override
