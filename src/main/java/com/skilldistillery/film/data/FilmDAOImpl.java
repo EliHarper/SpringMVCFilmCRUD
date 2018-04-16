@@ -276,12 +276,10 @@ public class FilmDAOImpl implements FilmDAO {
 			sql = "delete from film where id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
-			int updateCount = stmt.executeUpdate();
-			if (updateCount == 1) {
+			stmt.executeUpdate();
 				System.out.println("Film deleted successfully");
-				return true;
-			}
 			conn.commit();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println("Error during inserts.");
@@ -295,6 +293,7 @@ public class FilmDAOImpl implements FilmDAO {
 				} catch (SQLException e1) {
 					System.err.println("Error rolling back.");
 					e1.printStackTrace();
+					return false;
 				}
 			}
 		}
