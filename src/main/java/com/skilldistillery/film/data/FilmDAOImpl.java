@@ -298,6 +298,7 @@ public class FilmDAOImpl implements FilmDAO {
 	public boolean deleteFilm(int filmId) {
 		Connection conn = null;
 		String sql;
+		boolean delete = true;
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false); // Start transaction
@@ -306,6 +307,7 @@ public class FilmDAOImpl implements FilmDAO {
 			stmt.setInt(1, filmId);
 			stmt.executeUpdate();
 			conn.commit();
+			return delete;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println("Error during inserts.");
@@ -313,17 +315,20 @@ public class FilmDAOImpl implements FilmDAO {
 			System.err.println("SQL Error: " + e.getErrorCode() + ": " + e.getMessage());
 			System.err.println("SQL State: " + e.getSQLState());
 			// Need to rollback, which also throws SQLException.
+			delete = false;
 			if (conn != null) {
 				try {
 					conn.rollback();
+					return delete;
 				} catch (SQLException e1) {
 					System.err.println("Error rolling back.");
 					e1.printStackTrace();
-					return false;
+					return delete;
 				}
+				
 			}
 		}
-		return true;
+		return delete;
 	}
 	
 	@Override

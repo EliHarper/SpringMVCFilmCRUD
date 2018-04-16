@@ -92,7 +92,7 @@ public class FilmController {
 			 mv.setViewName("WEB-INF/views/deleteResult.jsp");
 		 }
 		 else {
-			 mv.setViewName("WEB-INF/views/deleteFail.jsp");
+			 mv.setViewName("WEB-INF/views/DeleteFail.jsp");
 		 }
 		 
 		 return mv;
